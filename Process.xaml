@@ -1,0 +1,445 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ProcessTransaction" this:ProcessTransaction.in_To_Email_ID="Pavan.Jonnadula@bakerhughes.com" this:ProcessTransaction.in_CC_Email_ID="aravind.korabathina@bakerhughes.com" this:ProcessTransaction.in_CC_Sales_Email_ID="aravind.korabathina@bakerhughes.com" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_Passwords" Type="InArgument(scg:Dictionary(x:String, ss:SecureString))" />
+    <x:Property Name="in_To_Email_ID" Type="InArgument(x:String)" />
+    <x:Property Name="in_CC_Email_ID" Type="InArgument(x:String)" />
+    <x:Property Name="in_CC_Sales_Email_ID" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1153.33333333333,2475.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>Microsoft.Exchange.WebServices.Data</x:String>
+      <x:String>UiPath.Mail.Exchange</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Globalization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="39">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.PDF</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Java.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices.RuntimeInformation</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Description: In this file all other process specific files will be invoked. If an application exception occurs, the current transaction can be retried. If a BRE is thrown, the transaction will be skipped. Can be a flowchart or sequence. " DisplayName="ProcessTransaction" sap:VirtualizedContainerService.HintSize="984.666666666667,2410.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Mail_Status" />
+      <Variable x:TypeArguments="x:String" Name="EOD" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="942.666666666667,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <Assign sap:VirtualizedContainerService.HintSize="942.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Mail_Status]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[If (in_TransactionItem.SpecificContent("Status").ToString.Trim = "Condition-A", "Condition-A",If (in_TransactionItem.SpecificContent("Status").ToString.Trim = "Condition-B","Condition-B",If (in_TransactionItem.SpecificContent("Status").ToString.Trim = "Send_Email","Send_Email",If (in_TransactionItem.SpecificContent("Status").ToString.Trim = "60THMail", "60THMail", "No_Data"))))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="942.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[EOD]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[split(trim(in_TransactionItem.SpecificContent("Expected Order Date").ToString)," ")(0).ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If sap2010:Annotation.AnnotationText="This Mail for Condition-A" Condition="[Mail_Status = &quot;Condition-A&quot;]" DisplayName="If For sending Condition_A" sap:VirtualizedContainerService.HintSize="942.666666666667,705.333333333333" sap2010:WorkflowViewState.IdRef="If_6">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <If Condition="[trim(in_TransactionItem.SpecificContent(&quot;New Value&quot;).ToString) = &quot;Upside&quot;]" sap:VirtualizedContainerService.HintSize="772,510.666666666667" sap2010:WorkflowViewState.IdRef="If_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" Body="[in_Config(&quot;Condition_A_New_Value_Upside&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" Cc="[&quot;Aravind.korabathina@bakerhughes.com;&quot; + In_CC_Email_ID]" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendExchangeMail_16" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[in_Config(&quot;Email_Template_Subject&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" To="[In_To_Email_ID]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:SendExchangeMail>
+          </If.Then>
+          <If.Else>
+            <Sequence sap:VirtualizedContainerService.HintSize="526,346.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_18">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[trim(in_TransactionItem.SpecificContent(&quot;New Value&quot;).ToString) = &quot;Commit&quot; or trim(in_TransactionItem.SpecificContent(&quot;New Value&quot;).ToString) = &quot;Commit at Risk&quot;]" sap:VirtualizedContainerService.HintSize="484,254.666666666667" sap2010:WorkflowViewState.IdRef="If_10">
+                <If.Then>
+                  <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" Body="[in_Config(&quot;Condition_A New_Value_Commit_or_Commit_at_Risk&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" Cc="[&quot;Aravind.korabathina@bakerhughes.com;&quot; + In_CC_Email_ID]" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendExchangeMail_17" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[in_Config(&quot;Email_Template_Subject&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" To="[In_To_Email_ID]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:SendExchangeMail>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Else>
+        </If>
+      </If.Then>
+    </If>
+    <If sap2010:Annotation.AnnotationText="This Mail for Condition-B" Condition="[Mail_Status = &quot;Condition-B&quot;]" DisplayName="If For sending Condition_B" sap:VirtualizedContainerService.HintSize="942.666666666667,705.333333333333" sap2010:WorkflowViewState.IdRef="If_13">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <If Condition="[trim(in_TransactionItem.SpecificContent(&quot;New Value&quot;).ToString) = &quot;Upside&quot; and  trim(in_TransactionItem.SpecificContent(&quot;Old Value&quot;).ToString)  = &quot;Omit&quot;]" sap:VirtualizedContainerService.HintSize="906,510.666666666667" sap2010:WorkflowViewState.IdRef="If_12">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" Body="[in_Config(&quot;Condition_B_New_Value_Upside_and_Old_Value_Omit&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" Cc="[&quot;Aravind.korabathina@bakerhughes.com;&quot; + In_CC_Email_ID]" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,156.666666666667" sap2010:WorkflowViewState.IdRef="SendExchangeMail_18" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[in_Config(&quot;Email_Template_Subject&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" To="[In_To_Email_ID]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:SendExchangeMail>
+          </If.Then>
+          <If.Else>
+            <Sequence sap:VirtualizedContainerService.HintSize="526,346.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_20">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[trim(in_TransactionItem.SpecificContent(&quot;New Value&quot;).ToString) = &quot;Commit&quot; Or trim(in_TransactionItem.SpecificContent(&quot;New Value&quot;).ToString) = &quot;Commit at Risk&quot; And trim(in_TransactionItem.SpecificContent(&quot;Old Value&quot;).ToString) = &quot;Omit&quot;]" sap:VirtualizedContainerService.HintSize="484,254.666666666667" sap2010:WorkflowViewState.IdRef="If_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" Body="[in_Config(&quot;Condition_B_New_Value_Commit_or_Commit_at_risk_and _Old_Value _Omit&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" Cc="[&quot;Aravind.korabathina@bakerhughes.com;&quot; + In_CC_Email_ID]" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="SendExchangeMail_19" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[in_Config(&quot;Email_Template_Subject&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" To="[In_To_Email_ID]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:SendExchangeMail>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_19">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Else>
+        </If>
+      </If.Then>
+    </If>
+    <If sap2010:Annotation.AnnotationText="If For sending 60th Mail Condiion" Condition="[Mail_Status = &quot;Send_Email&quot;]" DisplayName="If For sending 60th Mail Condiion" sap:VirtualizedContainerService.HintSize="942.666666666667,351.333333333333" sap2010:WorkflowViewState.IdRef="If_18">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" Body="[in_Config(&quot;Email_Template_OMIT_CASE_with_EOD_60_Body&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString).replace(&quot;EOD_Date&quot;,split(in_TransactionItem.SpecificContent(&quot;Expected Order Date&quot;).ToString,&quot; &quot;)(0))]" Cc="[&quot;Aravind.korabathina@bakerhughes.com;&quot; + In_CC_Email_ID]" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,156.666666666667" sap2010:WorkflowViewState.IdRef="SendExchangeMail_22" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[in_Config(&quot;Email_Template_Subject&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" To="[In_To_Email_ID]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:SendExchangeMail>
+      </If.Then>
+    </If>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="942.666666666667,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="2214,1026" sap2010:WorkflowViewState.IdRef="Sequence_23">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[In_To_Email_ID &lt;&gt; &quot;&quot; and In_CC_Email_ID &lt;&gt; &quot;&quot;]" sap:VirtualizedContainerService.HintSize="2172,934" sap2010:WorkflowViewState.IdRef="If_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <If Condition="[trim(in_TransactionItem.SpecificContent(&quot;Status&quot;).ToString) = &quot;60THMail&quot;]" sap:VirtualizedContainerService.HintSize="1178,562.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,241.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="This is for 60 days mail. Add EOD to Bod that is pending. check while doing the code Imp that is pending." AuthenticationMode="UserNameAndPassword" Body="[in_Config(&quot;Email_Template_OMIT_CASE_with_EOD_60_Body&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString).replace(&quot;EOD_Date&quot;,split(trim(in_TransactionItem.SpecificContent(&quot;Expected Order Date&quot;).ToString),&quot; &quot;)(0).ToString)]" Cc="[&quot;Pavan.Jonnadula@bakerhughes.com;&quot; + In_CC_Email_ID + &quot;;&quot; + in_CC_Sales_Email_ID]" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,149.333333333333" sap2010:WorkflowViewState.IdRef="SendExchangeMail_5" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[in_Config(&quot;Email_Template_OMIT_CASE_with_EOD_60_Subject&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" To="[In_To_Email_ID]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:SendExchangeMail>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="756,402" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[trim(in_TransactionItem.SpecificContent(&quot;New Value&quot;).ToString) = &quot;Upside&quot;]" sap:VirtualizedContainerService.HintSize="714,310" sap2010:WorkflowViewState.IdRef="If_5">
+                      <If.Then>
+                        <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" Body="[in_Config(&quot;Email_Template_Upside_Body&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" Cc="[&quot;Pavan.Jonnadula@bakerhughes.com;&quot; + In_CC_Email_ID]" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,149.333333333333" sap2010:WorkflowViewState.IdRef="SendExchangeMail_6" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[in_Config(&quot;Email_Template_Upside_Subject&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" To="[In_To_Email_ID]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:SendExchangeMail>
+                      </If.Then>
+                      <If.Else>
+                        <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" Body="[in_Config(&quot;Email_Template_Commit_And_Risk_Body&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" Cc="[&quot;Pavan.Jonnadula@bakerhughes.com;&quot; + In_CC_Email_ID + &quot;;&quot; + in_CC_Sales_Email_ID]" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,149.333333333333" sap2010:WorkflowViewState.IdRef="SendExchangeMail_2" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[in_Config(&quot;Email_Template_Commit_And_Risk_Subject&quot;).ToString.replace(&quot;OPPTY&quot;,in_TransactionItem.SpecificContent(&quot;Oppty&quot;).ToString).replace(&quot;QUOTATION&quot;,in_TransactionItem.SpecificContent(&quot;Quotation&quot;).ToString)]" To="[In_To_Email_ID]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:SendExchangeMail>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="948,773.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If Condition="[In_To_Email_ID = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="906,681.333333333333" sap2010:WorkflowViewState.IdRef="If_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence sap:VirtualizedContainerService.HintSize="376,334" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" Body="[&quot;Hi Team,&quot; + system.Environment.NewLine + System.Environment.NewLine + &quot;For this SSO ID &quot; + in_TransactionItem.SpecificContent(&quot;COMOPS_SSO&quot;).ToString +&quot; Email Id has not found &quot;  + &quot;Please take necessary action on it.&quot; + system.Environment.NewLine + system.Environment.NewLine + &quot;Regards,&quot; + System.Environment.NewLine + &quot;Bot&quot;]" Cc="Pavan.Jonnadula@bakerhughes.com" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,149.333333333333" sap2010:WorkflowViewState.IdRef="SendExchangeMail_3" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[&quot;Email Id has not found for &quot; +in_TransactionItem.SpecificContent(&quot;COMOPS_SSO&quot;).ToString]" To="[in_Config(&quot;To_Email_Address&quot;).ToString]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" />
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                        <ui:CommentOut.Body>
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_1">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[New_Business_Exception]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">["COMOPS_SSO EMail Id Has Not Found"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </ui:CommentOut.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:CommentOut>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <If Condition="[In_CC_Email_ID = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="484,520.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="376,338.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" Body="[&quot;Hi Team,&quot; + system.Environment.NewLine + System.Environment.NewLine + &quot;For this SSO ID &quot; + in_TransactionItem.SpecificContent(&quot;FORECAST_SSO&quot;).ToString +&quot; Email Id has not found &quot;  + &quot;Please take necessary action on it.&quot; + system.Environment.NewLine + system.Environment.NewLine + &quot;Regards,&quot; + System.Environment.NewLine + &quot;Bot&quot;]" Cc="Pavan.Jonnadula@bakerhughes.com" DisplayName="Send Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" From="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,154" sap2010:WorkflowViewState.IdRef="SendExchangeMail_4" IsBodyHtml="False" IsDraft="False" Name="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" SaveCopy="False" SecurePassword="[in_Passwords(&quot;CSB_SnOP_Email_Password&quot;)]" Server="[in_Config(&quot;ExchangeServerAddress&quot;).ToString]" Subject="[&quot;Email Id has not found for &quot; +In_TransactionItem.SpecificContent(&quot;FORECAST_SSO&quot;).ToString]" To="[in_Config(&quot;To_Email_Address&quot;).ToString]" User="[in_Config(&quot;CSB_SnOP_User_Name&quot;).ToString]" />
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[New_Business_Exception]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">["FORECAST_SSO EMail Id Has Not Found"]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                        </Sequence>
+                      </If.Then>
+                    </If>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+  </Sequence>
+</Activity>

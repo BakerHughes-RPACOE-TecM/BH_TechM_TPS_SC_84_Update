@@ -1,0 +1,13 @@
+Hi Team,
+
+Body
+
+Machine_Name	: machine_name
+Status		: status
+Stage		: stage
+
+
+Regards,
+RPA Bot
+
+This is a system generated message please do not replay.
