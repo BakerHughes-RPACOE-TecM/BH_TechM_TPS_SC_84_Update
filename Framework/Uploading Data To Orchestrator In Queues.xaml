@@ -244,7 +244,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <If sap2010:Annotation.AnnotationText="Filtering the data at column &quot;Old Value&quot;, &quot;New Value&quot; = &quot;Omit&quot; and &quot;Expected Order Date &gt;=Today-1 and &lt;= Today + 60" Condition="[CSB_Report_Data_Table.Rows.Count&gt;1]" DisplayName="If - Condition-1" sap:VirtualizedContainerService.HintSize="778.666666666667,566.666666666667" sap2010:WorkflowViewState.IdRef="If_8">
+          <If sap2010:Annotation.AnnotationText="Filtering the data at column &quot;Old Value&quot;, &quot;New Value&quot; = &quot;Omit&quot; and &quot;Expected Order Date &gt;=Today-1 and &lt;= Today + 60" Condition="[CSB_Report_Data_Table.Rows.Count&gt;=1]" DisplayName="If - Condition-1" sap:VirtualizedContainerService.HintSize="778.666666666667,566.666666666667" sap2010:WorkflowViewState.IdRef="If_8">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
